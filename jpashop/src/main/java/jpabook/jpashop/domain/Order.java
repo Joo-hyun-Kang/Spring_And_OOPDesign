@@ -22,9 +22,13 @@ public class Order {
     @JoinColumn(name="member_id")
     private Member member;
 
+    // cascade適用前：persist(orderItemA) persist(orderItemB) persist(orderItemC) persist(order)
+    // cascade適用後：persist(order)
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
+    // cascade適用前：persist(delivery) persist(order)
+    // cascade適用後：persist(order)
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name="delivery_id")
     private Delivery delivery;
