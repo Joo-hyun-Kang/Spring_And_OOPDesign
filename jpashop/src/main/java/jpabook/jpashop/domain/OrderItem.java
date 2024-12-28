@@ -1,23 +1,26 @@
 package jpabook.jpashop.domain;
 
 import jakarta.persistence.*;
+import jpabook.jpashop.domain.item.Item;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Table(name = "order_item")
+@Getter @Setter
 public class OrderItem {
     @Id @GeneratedValue
-    long id;
+    @Column(name = "order_item_id")
+    private long id;
 
-    @Column
-    int orderPrice;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="item_id")
+    private Item item;
 
-    @Column
-    int count;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="order_id")
+    private Order order;
 
-    @ManyToOne
-    @JoinColumn(name="ORDER_ID")
-    Order order;
-
-    @ManyToOne
-    @JoinColumn(name="ITEM_ID")
-    Item item;
+    private int orderPrice;
+    private int count;
 }
