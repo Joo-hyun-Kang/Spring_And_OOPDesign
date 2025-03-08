@@ -2,3 +2,13 @@
 /avaj/.idea/workspace.xml
 /avaj/out
 avaj/en.subject.pdf
+
+# Mac OS X hidden files
+.DS_Store
+
+# DataBases
+h2
+
+# Shutdown Project
+avaj
+
